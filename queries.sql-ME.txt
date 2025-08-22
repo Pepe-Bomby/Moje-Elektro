@@ -1,0 +1,96 @@
+-- Dotazy s WHERE (10)
+
+-- 1. Najdi všechny produkty od výrobce Samsung
+SELECT * FROM produkty
+WHERE id_vyrobce = 1;
+
+-- 2. Najdi všechny výrobce z Prahy
+SELECT * FROM vyrobce
+WHERE adresa LIKE '%Praha%';
+
+-- 3. Najdi všechny kontakty, kde email obsahuje "test"
+SELECT * FROM moje_kontakty
+WHERE email LIKE '%test%';
+
+-- 4. Najdi všechny kontakty vytvořené po 20.8.2025
+SELECT * FROM wp_moje_kontakty
+WHERE created_at > '2025-08-20';
+
+-- 5. Najdi všechny produkty s cenou nad 5000
+SELECT * FROM produkty
+WHERE cena > 5000;
+
+-- 6. Najdi výrobce, jehož IČO je větší než 40000000
+SELECT * FROM vyrobce
+WHERE ico > 40000000;
+
+-- 7. Najdi kontakty, kde zpráva obsahuje "spolupráci"
+SELECT * FROM wp_moje_kontakty
+WHERE zprava LIKE '%spolupráci%';
+
+-- 8. Najdi produkty, jejichž název obsahuje "Pro"
+SELECT * FROM produkty
+WHERE nazev LIKE '%Pro%';
+
+-- 9. Najdi všechny kontakty s emailem končícím na ".cz"
+SELECT * FROM wp_moje_kontakty
+WHERE email LIKE '%.cz';
+
+-- 10. Najdi výrobce, jejichž název obsahuje "s.r.o."
+SELECT * FROM vyrobce
+WHERE nazev LIKE '%.s.r.o.%';
+
+-- Dotazy s JOIN ON (6)
+
+-- 11. Spoj produkty s výrobci
+SELECT p.nazev AS produkt, v.nazev AS vyrobce
+FROM produkty p
+JOIN vyrobce v ON p.id_vyrobce = v.id_vyrobce;
+
+-- 12. Spoj kontakty s výrobci podle emailu
+SELECT k.jmeno AS kontakt, v.nazev AS vyrobce
+FROM moje_kontakty k
+JOIN vyrobce v ON k.email = v.email;
+
+-- 13. Spoj produkty s kontakty podle testovacích dat
+SELECT p.nazev AS produkt, k.jmeno AS kontakt
+FROM produkty p
+JOIN moje_kontakty k ON k.email LIKE '%test%';
+
+-- 14. Spoj produkty s výrobci a vyber jen produkty od výrobce s IČO > 40000000
+SELECT p.nazev, v.nazev
+FROM produkty p
+JOIN vyrobce v ON p.id_vyrobce = v.id_vyrobce
+WHERE v.ico > 40000000;
+
+-- 15. Spoj kontakty se všemi výrobci, kde email obsahuje název výrobce
+SELECT k.jmeno, v.nazev
+FROM moje_kontakty k
+JOIN vyrobce v ON k.email LIKE CONCAT('%', v.nazev, '%');
+
+-- Dotazy s LEFT / RIGHT JOIN (2)
+
+-- 16. Všechny výrobce a jejich produkty (i když nemají žádný produkt)
+SELECT v.nazev AS vyrobce, p.nazev AS produkt
+FROM vyrobce v
+LEFT JOIN produkty p ON v.id_vyrobce = p.id_vyrobce;
+
+-- 17. Všechny kontakty a jejich výrobce (i když neodpovídá žádný)
+SELECT k.jmeno AS kontakt, v.nazev AS vyrobce
+FROM moje_kontakty k
+LEFT JOIN vyrobce v ON k.email = v.email;
+
+-- Dotaz s agregační funkcí (1)
+
+-- 18. Spočítej počet produktů u každého výrobce
+SELECT id_vyrobce, COUNT(*) AS pocet_produktu
+FROM produkty
+GROUP BY id_vyrobce;
+
+-- Dotaz s GROUP BY + HAVING (1)
+
+-- 19. Najdi výrobce, kteří mají více než 1 produkt
+SELECT id_vyrobce, COUNT(*) AS pocet_produktu
+FROM produkty
+GROUP BY id_vyrobce
+HAVING COUNT(*) > 1;

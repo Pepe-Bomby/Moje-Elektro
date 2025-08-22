@@ -1,0 +1,84 @@
+-- Tabulka distributor
+CREATE TABLE distributor (
+    id_distributor INT PRIMARY KEY,
+    nazev VARCHAR(100) NOT NULL,
+    kontakt VARCHAR(100),
+    email VARCHAR(100),
+    adresa VARCHAR(200)
+);
+
+-- Tabulka kategorie
+CREATE TABLE kategorie (
+    id_kategorie INT PRIMARY KEY,
+    nazev VARCHAR(100) NOT NULL,
+    popis TEXT,
+    typ VARCHAR(50),
+    priorita INT
+);
+
+-- Tabulka vyrobce
+CREATE TABLE vyrobce (
+    id_vyrobce INT PRIMARY KEY,
+    nazev VARCHAR(100) NOT NULL,
+    adresa VARCHAR(200),
+    telefon VARCHAR(20),
+    email VARCHAR(100),
+    ico VARCHAR(20) UNIQUE
+);
+
+-- Tabulka uzivatel
+CREATE TABLE uzivatel (
+    id_uzivatele INT PRIMARY KEY,
+    jmeno VARCHAR(50) NOT NULL,
+    prijmeni VARCHAR(50) NOT NULL,
+    email VARCHAR(100) NOT NULL UNIQUE,
+    telefon VARCHAR(20),
+    datum_registrace DATE
+);
+
+-- Tabulka produkty
+CREATE TABLE produkty (
+    id_produktu INT PRIMARY KEY,
+    nazev VARCHAR(100) NOT NULL,
+    popis TEXT,
+    cena DECIMAL(10,2) NOT NULL,
+    id_kategorie INT NOT NULL,
+    id_vyrobce INT,
+    id_distributor INT,
+    obrazek TEXT,
+    FOREIGN KEY (id_kategorie) REFERENCES kategorie(id_kategorie),
+    FOREIGN KEY (id_vyrobce) REFERENCES vyrobce(id_vyrobce),
+    FOREIGN KEY (id_distributor) REFERENCES distributor(id_distributor)
+);
+
+-- Tabulka objednavka
+CREATE TABLE objednavka (
+    id_objednavka INT PRIMARY KEY,
+    datum DATE NOT NULL,
+    celkova_cena DECIMAL(10,2) NOT NULL,
+    id_uzivatele INT NOT NULL,
+    stav VARCHAR(50),
+    adresa VARCHAR(255),
+    psc VARCHAR(20),
+    shrnuti TEXT,
+    FOREIGN KEY (id_uzivatele) REFERENCES uzivatel(id_uzivatele)
+);
+
+-- Tabulka objednavkaprodukt
+CREATE TABLE objednavkaprodukt (
+    id_objednavka INT NOT NULL,
+    id_produktu INT NOT NULL,
+    mnozstvi INT NOT NULL,
+    PRIMARY KEY (id_objednavka, id_produktu),
+    FOREIGN KEY (id_objednavka) REFERENCES objednavka(id_objednavka),
+    FOREIGN KEY (id_produktu) REFERENCES produkty(id_produktu)
+);
+
+-- Tabulka wp_moje_kontakty
+CREATE TABLE wp_moje_kontakty (
+    id_kontaktu INT PRIMARY KEY,
+    jmeno VARCHAR(200) NOT NULL,
+    email VARCHAR(200) NOT NULL,
+    zprava TEXT NOT NULL,
+    created_at DATETIME NOT NULL
+);
