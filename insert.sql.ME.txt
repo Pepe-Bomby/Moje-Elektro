@@ -1,0 +1,92 @@
+-- insert.sql
+
+-- Tabulka distributor
+INSERT INTO distributor (id_distributor, nazev, kontakt, email, adresa) VALUES
+(1, 'Alza.cz', 'Petr Novák', 'info@alza.cz', 'Praha 8, K výročí 2222/4'),
+(2, 'CZC.cz', 'Jana Svobodová', 'support@czc.cz', 'Praha 9, Vysočanská 49'),
+(3, 'Datart', 'Karel Dvořák', 'info@datart.cz', 'Praha 4, Budějovická 3'),
+(4, 'Mall.cz', 'Lucie Němcová', 'kontakt@mall.cz', 'Praha 10, Vršovická 1520'),
+(5, 'Electro World', 'Martin Novotný', 'info@electroworld.cz', 'Praha 5, Strakonická 50'),
+(6, 'Okay.cz', 'Eva Malá', 'kontakt@okay.cz', 'Praha 3, Bořivojova 50'),
+(7, 'TS Bohemia', 'Pavel Kovář', 'info@tsbohemia.cz', 'Praha 7, U Výstaviště 15');
+
+-- Tabulka kategorie
+INSERT INTO kategorie (id_kategorie, nazev, popis, typ, priorita) VALUES
+(1, 'Televize', 'Televizory všech typů a velikostí', 'elektronika', 1),
+(2, 'Mobilní telefony', 'Smartphony a mobilní telefony', 'elektronika', 2),
+(3, 'Počítače a notebooky', 'Stolní počítače, notebooky a příslušenství', 'elektronika', 3),
+(4, 'Domácí spotřebiče', 'Ledničky, pračky, vysavače a další', 'spotřebiče', 4),
+(5, 'Audio a video', 'Reproduktory, sluchátka, audio systémy', 'elektronika', 5),
+(6, 'Herní konzole', 'Konzole a herní příslušenství', 'elektronika', 6),
+(7, 'Foto a kamery', 'Fotoaparáty, kamery a příslušenství', 'elektronika', 7);
+
+-- Tabulka vyrobce
+INSERT INTO vyrobce (id_vyrobce, nazev, adresa, telefon, email, ico) VALUES
+(1, 'Samsung', 'Samsung Electronics Czech, Praha', '123456789', 'info@samsung.cz', '12345678'),
+(2, 'Apple', 'Apple s.r.o., Praha', '987654321', 'info@apple.cz', '87654321'),
+(3, 'Sony', 'Sony Czech s.r.o., Praha', '234567890', 'info@sony.cz', '23456789'),
+(4, 'Lenovo', 'Lenovo CZ, Praha', '345678901', 'info@lenovo.cz', '34567890'),
+(5, 'Huawei', 'Huawei Technologies, Praha', '456789012', 'info@huawei.cz', '45678901'),
+(6, 'Dell', 'Dell Czech, Praha', '567890123', 'info@dell.cz', '56789012'),
+(7, 'Moje Elektro', 'Moje Elektro s.r.o., Praha10', '723506513', 'info@mojeelektro.cz', '32132132');
+
+-- Tabulka uzivatel
+INSERT INTO uzivatel (id_uzivatele, jmeno, prijmeni, email, telefon, datum_registrace) VALUES
+(1, 'Jan', 'Novak', 'jan.novak@email.cz', '123456789', '2023-01-15'),
+(3, 'Marek', 'Dvorak', 'marek.dvorak@email.cz', '606123456', '2023-05-20'),
+(4, 'Josef', 'Dolejší', 'kama@email.cz', '123456711', '2023-01-15'),
+(5, 'Lucie', 'Mala', 'lucie.mala@email.cz', '602555555', '2024-07-01'),
+(6, 'Julie', 'Landová', 'drevak@email.cz', '606123446', '2023-05-20'),
+(7, 'Petra', 'Svobodova', 'petra.svobodova@email.cz', '987654321', '2023-03-10'),
+(8, 'Tomas', 'Havel', 'tomas.havel@email.cz', '777123456', '2024-01-05'),
+(9, 'Anna', 'Kralova', 'anna.kralova@email.cz', '733456789', '2024-06-11'),
+(10, 'Veronika', 'Váchová', 'sisi@email.cz', '123456781', '2023-01-15'),
+(11, 'Zdeňek', 'Havel', 'auto@email.cz', '987654320', '2023-03-10'),
+(12, 'Adam', 'Fisher', 'ririk@email.cz', '606123442', '2023-05-20'),
+(13, 'Edit', 'Dubská', 'edit@email.cz', '123450789', '2023-01-15'),
+(14, 'Lili', 'Veselková', 'lili.vesela@email.cz', '987654320', '2023-03-11'),
+(15, 'Adéla', 'Novaková', 'kun@email.cz', '606123478', '2023-05-21');
+
+-- Tabulka produkty – všechny produkty
+INSERT INTO produkty (id_produktu, nazev, popis, cena, id_kategorie, id_vyrobce, id_distributor, obrazek) VALUES
+(1, 'Samsung QLED TV 55"', '55" QLED televize Samsung s 4K rozlišením a HDR', 24999.00, 1, 1, NULL, 'https://www.datart.cz/foto/500/3/5/1/product_62291'),
+(2, 'Apple iPhone 14', 'Nejnovější iPhone s OLED displejem', 21999.00, 2, 2, NULL, 'https://www.datart.cz/foto/500/3/5/1/product_52091'),
+(3, 'Samsung Galaxy S23', 'Prémiový Android telefon s vynikajícím fotoaparátem', 6999.00, 2, 1, NULL, 'https://www.datart.cz/foto/500/0/4/8/product_54758'),
+(4, 'Apple Airpods Max', 'Sluchátka oblouková s výdrží až 20 hodin.', 11999.00, 5, 2, NULL, 'https://www.datart.cz/foto/500/5/2/4/product_66304'),
+(5, 'Sony Bravia KD-75X85L', 'Televize s 75palcovou úhlopříčkou, 4K rozlišením', 32199.00, 1, 3, NULL, 'https://www.datart.cz/foto/500/0/4/8/product_67758'),
+(6, 'Sony ULT TOWER 10', 'Bluetooth reproduktor - aktivní, aktivní subwoofer', 11990.00, 4, 3, NULL, 'https://www.datart.cz/foto/500/8/6/2/product_63012'),
+(7, 'Notebook Dell Latitude 14', 'Notebook Dell Latitude 5455 splní nároky profesionálů', 11590.00, 3, 6, NULL, 'https://www.datart.cz/foto/500/1/1/8/product_67838'),
+(8, 'Stolní počítač Dell OptiPlex 7020 SFF', 'Dell OptiPlex 7020 SFF, Dell nabízí pro pracovní účely', 14990.00, 3, 6, NULL, 'https://www.datart.cz/foto/250/9/6/8/product_66248'),
+(9, 'Legion T5 26IRB8', 'Společnost Lenovo není na poli počítačů žádným nováčkem', 25999.00, 3, 4, NULL, 'https://www.bing.com/th?id=OPEC.7LudMY0fGAxsCA474C'),
+(10, 'Notebook Lenovo V15 G4 IRU', 'Notebook Lenovo V15 G4 IRU se výborně hodí pro práci', 8999.00, 3, 4, NULL, 'https://www.bing.com/th?id=OPEC.Z91u%2f1NVGqwMeQ47'),
+(11, 'Huawei FreeBuds 6i', 'Bezdrátová sluchátka s mikrofonem, True Wireless', 1190.00, 5, 5, NULL, 'https://www.datart.cz/foto/500/2/7/3/product_63433'),
+(12, 'Huawei Scale 3', 'Osobní váha - digitální diagnostická, nosnost 150 kg', 990.00, 4, 5, NULL, 'https://www.bing.com/th?id=OPEC.MIOByJZl%2b4pgCw47'),
+(13, 'MojeNotebook', 'Dokonalý notebook od Moje Elektro', 12499.00, 3, 7, NULL, 'https://th.bing.com/th/id/OPEC.JUhKHrpx3Nvq3A474C4'),
+(14, 'MojePc', 'Rychlý počítač s novým AI', 19990.00, 3, 7, NULL, 'https://www.bing.com/th?id=OPEC.8mkxq4MM1h6DAQ474C'),
+(15, 'Moje TV 65"', 'Kvalitní velká televize Moje Elektro', 15999.00, 1, 7, NULL, 'https://www.bing.com/th?id=OPEC.%2f6dCUN5jQcC0gg47'),
+(16, 'MojeTelevize 55''', 'Smart televize od Moje Elektro', 12999.00, 1, 7, NULL, 'https://www.bing.com/th?id=OPEC.tpEUmYlEz4VmUQ474C'),
+(17, 'MojeMikrofon', 'Výkonný mikrofon Moje Elektro', 1490.00, 5, 7, NULL, 'https://www.bing.com/th?id=OPEC.o5KF9e32vCigkA474C'),
+(18, 'MojePhone', 'Kvalitní mobilní telefon', 2499.00, 2, 7, NULL, 'https://www.bing.com/th?id=OPEC.N3IlPN%2bJM7MaIA47'),
+(19, 'MojePhone X', 'Smartphone od Moje Elektro', 3999.00, 2, 7, NULL, 'https://www.bing.com/th?id=OPEC.3JZfQVcer%2fdx9w47'),
+(20, 'MojePhone Y', 'Kvalitní mobilní telefon', 15999.00, 2, 7, NULL, 'https://img-cdn.heureka.group/v1/16008c07-d9c2-4bb'),
+(21, 'MojeRobo Vysavač', 'Kvalitní domácí spotřebič', 12999.00, 4, 7, NULL, 'https://th.bing.com/th/id/OPEC.gGUQVEw6rr3f1Q474C4'),
+(22, 'MojeChytrá žárovka', 'Výkonná led žárovka', 769.00, 4, 7, NULL, 'https://th.bing.com/th?id=OPEC.IeDv5sk%2bbYImLg474'),
+(23, 'MojeMixér', 'Kvalitní kuchyňský mixér', 2499.00, 4, 7, NULL, 'https://a.allegroimg.com/original/116320/21a93bd04'),
+(24, 'MojeReproduktor', 'Bezdrátový reproduktor Moje Elektro', 3999.00, 5, 7, NULL, 'https://cdn.myshoptet.com/usr/www.bestberg.cz/user');
+
+-- Tabulka objednavka
+INSERT INTO objednavka (id_objednavka, datum, celkova_cena, id_uzivatele, stav, adresa, psc, shrnuti) VALUES
+(25, '2025-08-08', 1500.00, 1, 'čeká', NULL, NULL, NULL),
+(26, '2025-08-07', 3200.50, 3, 'vyřízená', NULL, NULL, NULL),
+(27, '2025-08-06', 0.00, 4, 'stornována', NULL, NULL, NULL),
+(31, '2025-08-08', 1500.00, 1, 'čeká', NULL, NULL, NULL),
+(32, '2025-08-07', 3200.50, 3, 'vyřízená', NULL, NULL, NULL),
+(33, '2025-08-06', 3100.00, 2, 'vyřízená', NULL, NULL, NULL);
+
+INSERT INTO `objednavkaprodukt` (`id_objednavka`, `id_produktu`, `mnozstvi`) VALUES
+(25, 17, 2),
+(26, 2, 5),
+(27, 1, 1),
+(31, 3, 1),
+(32, 24, 4);
+
